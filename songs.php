@@ -22,6 +22,10 @@
     $statement = $db->prepare($query);
     $statement->execute(); 
 
+    $query2 = "SELECT * FROM genre";
+    $statement2 = $db->prepare($query2);
+    $statement2->execute();
+
     // Determine which page number visitor is currently on
     if (!isset($_GET['page'])) {
       $page = 1;
@@ -43,10 +47,6 @@
     $query = "SELECT * FROM songs ORDER BY currentDate DESC LIMIT " . $first_page . ',' . $rows_per_page;
     $statement = $db->prepare($query);
     $statement->execute();
-
-    $query2 = "SELECT * FROM genre";
-    $statement2 = $db->prepare($query2);
-    $statement2->execute();
   
 ?>
 
@@ -137,7 +137,8 @@
                       <td><?= strlen($row['description']) >= 135 ? substr($row['description'], 0, 135) . "..." : $row['description'] ?></td>
                       <td><?= date("F j, Y, g:i a", strtotime($row['currentDate'])) ?></td>
                       <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
-                      <td><a class="btn btn-default" href="edit_song.php?songId=<?= $row['songId'] ?>">Edit</a></td>
+                      <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
+                      <td><a class="btn btn-default" href="edit_song.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>">Edit</a></td>
                     </tr>
                   <?php endwhile ?>
                 </table>
