@@ -21,7 +21,7 @@
 
     // Execute and fetch the return data.
     $statement->execute();
-    $row = $statement->fetch();       
+    $row = $statement->fetch();   
 
 ?>
 
@@ -62,7 +62,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1><?= $row['title'] ?></h1>
-        <h4>by <?= $row['artist'] ?></h4>
+        <h4><span class="glyphicon glyphicon-play" aria-hidden="true"></span><i> <?= $row['artist'] ?></i></h4>
         <h2 class="show-full-post"><?= $row['description'] ?></h2>
         <p class="date"><small><?= date("F j, Y, g:i a", strtotime($row['currentDate'])) ?></small></p>
       </div>

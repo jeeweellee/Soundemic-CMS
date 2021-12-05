@@ -10,7 +10,7 @@
 
     switch($activePage){
         case 'admin':
-            $component = 'glyphicon glyphicon-home';
+            $component = 'glyphicon glyphicon-wrench';
             $title = 'Admin';
             $caption = 'Manage Your Site';
             break;
