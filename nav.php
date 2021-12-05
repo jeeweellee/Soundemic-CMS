@@ -36,19 +36,14 @@
 
           <!-- Menu Tabs -->
           <ul class="nav navbar-nav">
+            <li class="<?= ($thisPage == 'user_index') ? 'active' : '' ?>"><a href="user_index.php">Home</a></li>
+            <li class="<?= ($thisPage == 'songs') ? 'active' : '' ?>"><a href="songs.php">Songs</a></li>
+            <li class="<?= ($thisPage == 'genre') ? 'active' : '' ?>"><a href="genre.php">Genre</a></li>
             <?php if ($loggedInUser == 'admin'): ?>
-              <li class="<?= ($thisPage == 'admin') ? 'active' : '' ?>"><a href="admin.php">Home</a></li>
-              <li class="<?= ($thisPage == 'songs') ? 'active' : '' ?>"><a href="songs.php">Songs</a></li>
-              <li class="<?= ($thisPage == 'genre') ? 'active' : '' ?>"><a href="genre.php">Genre</a></li>
               <li class="<?= ($thisPage == 'comments') ? 'active' : '' ?>"><a href="comments.php">Comments</a></li>
               <li class="<?= ($thisPage == 'users') ? 'active' : '' ?>"><a href="users.php">Users</a></li>
-            <?php else: ?>
-              <li class="<?= ($thisPage == 'user_index') ? 'active' : '' ?>"><a href="user_index.php">Home</a></li>
-              <li class="<?= ($thisPage == 'songs') ? 'active' : '' ?>"><a href="songs.php">Songs</a></li>
-              <li class="<?= ($thisPage == 'genre') ? 'active' : '' ?>"><a href="genre.php">Genre</a></li>
-              <li class="<?= ($thisPage == 'comments') ? 'active' : '' ?>"><a href="comments.php">Comments</a></li>
+              <li class="<?= ($thisPage == 'admin') ? 'active' : '' ?>"><a href="admin.php">Admin</a></li>
             <?php endif ?>
-
           </ul>
 
           <!-- Welcome Logout -->

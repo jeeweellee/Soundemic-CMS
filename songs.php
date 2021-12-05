@@ -14,10 +14,6 @@
     // Connect to the database.
     require('connect.php');
 
-    // $categories = "SELECT genre FROM genre WHERE genre.songId = songs.songId";
-    // $songCategories = $db->prepare($categories);
-    // $songCategories->execute();   
-
     $query = "SELECT * FROM songs";
     $statement = $db->prepare($query);
     $statement->execute(); 
@@ -92,18 +88,14 @@
 
             <!-- List Group Status -->
             <div class="list-group">
+              <a href="user_index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+              <a href="songs.php" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
+              <a href="genre.php" class="list-group-item"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Genre</a>
+              <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
               <?php if ($loggedInUser == 'admin'): ?>
-                <a href="admin.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
-                <a href="songs.php" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
-                <a href="genre.php" class="list-group-item"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Genre</a>
-                <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
                 <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
-              <?php else: ?> 
-                <a href="user_index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
-                <a href="songs.php" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
-                <a href="genre.php" class="list-group-item"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Genre</a>
-                <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
-              <?php endif ?>
+                <a href="admin.php" class="list-group-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</a>
+              <?php endif ?>             
             </div>
             
           </div>
@@ -134,8 +126,9 @@
                   <?php while($row = $statement->fetch()): ?>
                     <tr>
                       <td><?= $row['title'] ?></td>
-                      <td><?= strlen($row['description']) >= 135 ? substr($row['description'], 0, 135) . "..." : $row['description'] ?></td>
-                      <td><?= date("F j, Y, g:i a", strtotime($row['currentDate'])) ?></td>
+                      <td><?= strlen($row['description']) >= 50 ? substr($row['description'], 0, 50) . "..." : $row['description'] ?></td>
+                      <td><?= date("M j, Y, g:i a", strtotime($row['currentDate'])) ?></td>
+                      
                       <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
                       <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
                       <td><a class="btn btn-default" href="edit_song.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>">Edit</a></td>

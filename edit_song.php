@@ -13,22 +13,23 @@
     $query     = "SELECT * FROM songs WHERE songId = :songId LIMIT 1"; 
     $statement = $db->prepare($query);
 
+    // Build and prepare SQL String with :genreId placeholder parameter.
     $query2 = "SELECT * FROM genre WHERE genreId = :genreId LIMIT 1";  
     $statement2 = $db->prepare($query2);
 
-    // Sanitize $_GET['songId'] to ensure it's a number.
+    // Sanitize $_GET['songId'] and $_GET['genreId']  to ensure it's a number.
     $songId = filter_input(INPUT_GET, 'songId', FILTER_SANITIZE_NUMBER_INT);
     $genreId = filter_input(INPUT_GET, 'genreId', FILTER_SANITIZE_NUMBER_INT);
 
     // Bind the :songId parameter in the query to the sanitized
-    // $songId specifying a binding-type of Integer.
+    // $songId & genreId specifying a binding-type of Integer.
     $statement->bindValue('songId', $songId, PDO::PARAM_INT);
     $statement2->bindValue('genreId', $genreId, PDO::PARAM_INT);
 
     $statement->execute();
     $statement2->execute();
     
-    // Fetch the row selected by primary key songId.
+    // Fetch the row selected by primary key songId and genreId.
     $row = $statement->fetch();
     $row2 = $statement2->fetch();
 
@@ -80,17 +81,14 @@
 
             <!-- List Group Status -->
             <div class="list-group">
-            <?php if ($loggedInUser == 'admin'): ?>
+              <a href="user_index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+              <a href="songs.php" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
+              <a href="genre.php" class="list-group-item"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Genre</a>
+              <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
+              <?php if ($loggedInUser == 'admin'): ?>
                 <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
-                <a href="admin.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
-                <a href="songs.php" class="list-group-item"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
-                <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
-                <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
-              <?php else: ?> 
-                <a href="user_index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
-                <a href="songs.php" class="list-group-item"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
-                <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
-              <?php endif ?>
+                <a href="admin.php" class="list-group-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</a>
+              <?php endif ?>             
             </div>
 
           </div>
@@ -131,16 +129,17 @@
 
                     <div class="modal-footer">
                       <?php if ($loggedInUser == 'admin'): ?>   
-                          <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
-                          <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
-                          <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
-                          <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
-                      <?php else: ?>
                         <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
                         <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
                         <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
+                        <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
+                      <?php else: ?>
+                        <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
                         <input type="button" class="btn btn-default" value="Close" onclick="history.go(-1)">
                       <?php endif ?>  
+                      
+                        <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
+                        <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
                     </div>
                 </form>
               </div>

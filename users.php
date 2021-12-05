@@ -47,7 +47,7 @@
     <section id="breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
-          <li><a href="admin.php">Home</a></li>
+          <li><a href="user_index.php">Home</a></li>
           <li class="active">Users</li>
         </ol>
       </div>
@@ -60,11 +60,12 @@
             
             <!-- List Group Status -->
             <div class="list-group">
-                <a href="admin.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Admin</a>
+                <a href="user_index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
                 <a href="songs.php" class="list-group-item"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
                 <a href="genre.php" class="list-group-item"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Genre</a>
                 <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
-                <a href="users.php" class="list-group-item  active main-color-bg"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
+                <a href="users.php" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
+                <a href="admin.php" class="list-group-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</a>
             </div>
 
           </div>
