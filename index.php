@@ -66,7 +66,7 @@
       <div class="row">
         <?php while ($row = $statement->fetch()): ?>
           <div class="col-md-4">
-            <h2><?= $row['title'] ?></h2>
+          <h2><a href="user_show.php?songId=<?= $row['songId'] ?>&p=<?= (str_replace(' ', '-', strtolower($row['title']))) ?>" style="color: #342b0f"><?= $row['title'] ?></a></h2>
             <p><?= strlen($row['description']) >= 110 ? substr($row['description'], 0, 110) . "..." : $row['description'] ?></p>
             <p><a class="btn btn-default main-color-bg" href="show.php?songId=<?= $row['songId'] ?>" role="button">View details &raquo;</a></p>
           </div>
