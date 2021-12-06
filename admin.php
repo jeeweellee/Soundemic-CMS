@@ -17,7 +17,10 @@
     $query2 = "SELECT * FROM songs";
     $statement2 = $db->prepare($query2);
     $statement2->execute();
-
+    
+    $query3 = "SELECT * FROM comments";
+    $statement3 = $db->prepare($query3);
+    $statement3->execute();
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +62,6 @@
               <a href="user_index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
               <a href="songs.php" class="list-group-item"><span class="glyphicon glyphicon-music" aria-hidden="true"></span> Songs</a>
               <a href="genre.php" class="list-group-item"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Genre</a>
-              <a href="comments.php" class="list-group-item"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments</a>
               <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
               <a href="admin.php" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</a>
             </div>
@@ -87,7 +89,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 12</h2>
+                    <h2><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <?= $row3 = $statement3->rowCount() ?></h2>
                     <h4>Comments</h4>
                   </div>
                 </div>

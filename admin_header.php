@@ -24,11 +24,6 @@
             $title = 'Genre';
             $caption = 'Manage Your Genre';
             break;
-        case 'comments':
-            $component = 'glyphicon glyphicon-comment';
-            $title = 'Comments';
-            $caption = 'Manage Your Comments';
-            break;
         case 'users':
             $component = 'glyphicon glyphicon-user';
             $title = 'Users';
