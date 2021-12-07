@@ -14,6 +14,10 @@
     // Connect to the database.
     require('connect.php');
 
+    if(session_status() !== PHP_SESSION_ACTIVE) { 
+      session_start(); 
+    } 
+
     $query = "SELECT * FROM songs";
     $statement = $db->prepare($query);
     $statement->execute(); 

@@ -8,6 +8,10 @@
 
     // Connect to the database.
     require('connect.php');
+
+    if(session_status() !== PHP_SESSION_ACTIVE) { 
+        session_start(); 
+    } 
     
     if ($_POST) {
         if (isset($_POST['create'])) {

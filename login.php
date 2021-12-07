@@ -10,6 +10,7 @@
     require("connect.php");
 
     $errorMessage = "";
+    $loginId = filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_NUMBER_INT);
     $loginUser = filter_input(INPUT_POST, 'loginUser', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $loginPassword = filter_input(INPUT_POST, 'loginPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -32,6 +33,7 @@
 
         if (password_verify($loginPassword, $row['hashpassword'])) {
           $_SESSION['loggedIn_user'] = $loginUser;
+          $_SESSION['userId'] = $row['userId'];
           header("Location: user_index.php");
         }
         else {
