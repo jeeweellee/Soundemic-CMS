@@ -97,7 +97,7 @@
                     <div class="modal-footer">
                         <input type="hidden" name="userId" value="<?= $row['userId'] ?>" />
                         <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
-                        <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
+                        <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this user?')" />
                     </div>
                 </form>
               </div>

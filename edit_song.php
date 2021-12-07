@@ -131,7 +131,7 @@
                         <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
                         <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
                         <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
-                        <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
+                        <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this song?')" />
                       <?php else: ?>
                         <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
                         <input type="button" class="btn btn-default" value="Close" onclick="history.go(-1)">
