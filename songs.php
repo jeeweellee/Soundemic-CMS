@@ -196,7 +196,7 @@
                     <input type="text" name="artist" id="artist" class="form-control" placeholder="Add An Artist...">
                 </div>
                 <div class="form-group">
-                    <label>Genre</label>
+                  <label>Genre</label>
                     <select name="genre" id="genre" class="form-control">
                       <?php while($row = $statement2->fetch()): ?>
                         <option value="<?= $row['genreId'] ?>"><?= $row['genre'] ?></option>
