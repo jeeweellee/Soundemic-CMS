@@ -47,7 +47,7 @@
     <section id="breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
-          <li class="active">Home</li>
+          <li class="active"><a href="user_index.php">Home</a></li>
         </ol>
       </div>
     </section>

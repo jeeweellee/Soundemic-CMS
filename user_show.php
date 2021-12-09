@@ -46,7 +46,6 @@
     <title>Soundemic | <?= $row['title'] ?></title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>  
   </head>
   <body>
 

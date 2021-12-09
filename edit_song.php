@@ -64,7 +64,7 @@
       <div class="container">
         <ol class="breadcrumb">
           <?php if ($loggedInUser == 'admin'): ?>
-            <li><a href="admin.php">Home</a></li>
+            <li><a href="user_index.php">Home</a></li>
             <li class="active">Edit Song</li>
           <?php else: ?>
             <li><a href="index.php">Home</a></li>
