@@ -10,6 +10,10 @@
   
 	// Connect to the database.
 	require('connect.php');
+   
+  if(session_status() !== PHP_SESSION_ACTIVE) { 
+      session_start(); 
+  } 
 
 	$query = "SELECT * FROM songs ORDER BY currentDate DESC LIMIT 6";
 
@@ -45,7 +49,6 @@
       </div>
     </div>
 
-
     <!-- Home Page Content -->
     <div class="container">      
       <div class="row">
@@ -53,7 +56,9 @@
           <div class="col-md-4">
             <h2><a href="user_show.php?songId=<?= $row['songId'] ?>&p=<?= (str_replace(' ', '-', strtolower($row['title']))) ?>" style="color: #342b0f"><?= $row['title'] ?></a></h2>
             <p><?= strlen($row['description']) >= 110 ? substr($row['description'], 0, 110) . "..." : $row['description'] ?></p>
-            <a class="btn btn-default" href="edit_song.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>" role="button">Edit</a></p>
+            <?php if ($loggedInUser == 'admin'): ?>
+              <a class="btn btn-default" href="edit_song.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>" role="button">Edit</a>
+            <?php endif ?>
           </div>
         <?php endwhile ?>
       </div>  

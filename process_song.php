@@ -168,7 +168,6 @@
                         </div>
                         <div class="error-actions">
                             <a href="user_index.php" class="btn btn-default main-color-bg btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a>
-                            <!-- <a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a> -->
                             <button type="button" class="btn btn-default btn-lg" onclick="history.go(-1)">Return</button>
                         </div>
                     </div>

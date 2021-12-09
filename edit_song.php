@@ -23,8 +23,8 @@
 
     // Bind the :songId parameter in the query to the sanitized
     // $songId & genreId specifying a binding-type of Integer.
-    $statement->bindValue('songId', $songId, PDO::PARAM_INT);
-    $statement2->bindValue('genreId', $genreId, PDO::PARAM_INT);
+    $statement->bindValue(':songId', $songId, PDO::PARAM_INT);
+    $statement2->bindValue(':genreId', $genreId, PDO::PARAM_INT);
 
     $statement->execute();
     $statement2->execute();
@@ -100,46 +100,44 @@
               </div>
               <div class="panel-body">
                 <form action="process_song.php" method="post">
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" name="title" id="title" class="form-control" value="<?= $row['title']?>" />
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea name="description" id="description" class="form-control" rows="4" style="resize: none;"><?= $row['description'] ?></textarea>
-                    </div> 
-                    <div class="form-group">
-                        <label>Artist</label>
-                        <input type="text" name="artist" id="artist" class="form-control" value="<?= $row['artist'] ?>"/>
-                    </div>
-                    <div class="form-group">
-                      <label>Genre</label>
-                        <select name="genre" id="genre" class="form-control">
-                          <?php while($row3 = $statement3->fetch()): ?>
-                            <?php if($row3['genreId'] == $row2['genreId']): ?>
-                              <option value="<?= $row3['genreId'] ?>" selected>
-                            <?php else: ?>
-                              <option value="<?= $row3['genreId'] ?>">
-                            <?php endif?>
-                              <?= $row3['genre'] ?></option>
-                          <?php endwhile ?>
-                        </select>
-                    </div>
+                  <div class="form-group">
+                      <label>Title</label>
+                      <input type="text" name="title" id="title" class="form-control" value="<?= $row['title']?>" />
+                  </div>
+                  <div class="form-group">
+                      <label>Description</label>
+                      <textarea name="description" id="description" class="form-control" rows="4" style="resize: none;"><?= $row['description'] ?></textarea>
+                  </div> 
+                  <div class="form-group">
+                      <label>Artist</label>
+                      <input type="text" name="artist" id="artist" class="form-control" value="<?= $row['artist'] ?>"/>
+                  </div>
+                  <div class="form-group">
+                    <label>Genre</label>
+                      <select name="genre" id="genre" class="form-control">
+                        <?php while($row3 = $statement3->fetch()): ?>
+                          <?php if($row3['genreId'] == $row2['genreId']): ?>
+                            <option value="<?= $row3['genreId'] ?>" selected>
+                          <?php else: ?>
+                            <option value="<?= $row3['genreId'] ?>">
+                          <?php endif?>
+                            <?= $row3['genre'] ?></option>
+                        <?php endwhile ?>
+                      </select>
+                  </div>
 
-                    <div class="modal-footer">
-                      <?php if ($loggedInUser == 'admin'): ?>   
-                        <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
-                        <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
-                        <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
-                        <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this song?')" />
-                      <?php else: ?>
-                        <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
-                        <input type="button" class="btn btn-default" value="Close" onclick="history.go(-1)">
-                      <?php endif ?>  
-                      
-                        <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
-                        <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
-                    </div>
+                  <div class="modal-footer">
+                    <?php if ($loggedInUser == 'admin'): ?>   
+                      <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
+                      <input type="submit" class="btn btn-default trigger-btn" data-dismiss="modal" name="delete" value="Delete" onclick="return confirm('Are you sure you wish to delete this song?')" />
+                    <?php else: ?>
+                      <input type="submit" name="update" class="btn btn-primary main-color-bg" value="Update">
+                      <input type="button" class="btn btn-default" value="Close" onclick="history.go(-1)">
+                    <?php endif ?>  
+                    
+                      <input type="hidden" name="songId" value="<?= $row['songId'] ?>" />
+                      <input type="hidden" name="genreId" value="<?= $row['genreId'] ?>" />
+                  </div>
                 </form>
               </div>
             </div>

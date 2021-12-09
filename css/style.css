@@ -104,11 +104,6 @@ body {
   text-align: center;
 }
 
-#success, #unsuccesful {
-  width: 400px !important;
-  display: none !important;
-}
-
 /* Header */
 
 #header {
@@ -174,6 +169,21 @@ small {
 
 #login {
   margin-top: 30px;
+}
+
+/* Error Page */
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.error-actions {
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.error-actions .btn { 
+  margin-right:10px; 
 }
 
 /* Footer */
