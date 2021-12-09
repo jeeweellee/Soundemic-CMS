@@ -72,20 +72,31 @@
           </div>
 
           <!-- Leave a Comment -->
+          <form action="process_comment.php?songId=<?= $_GET['songId'] ?>" method="post">
           <div class="panel">
             <div class="panel-body">
               <div class="row">
-                <form action="process_comment.php?songId=<?= $_GET['songId'] ?>" method="post">
-                  <div class="col-md-11">
-                    <input class="form-control" name="comment" id="comment" type="text" placeholder="Leave a Comment">
-                  </div>
-                  <div class="col-md-1">
-                    <input class="btn btn-default pull-right" name="share" type="submit" style="color: #fd7b00" value="Comment">
-                  </div>    
-                </form>           
+                <div class="col-md-11">
+                  <input class="form-control" name="comment" id="comment" type="text" placeholder="Leave a Comment">
+                </div>
+                <div class="col-md-1">
+                  <input class="btn btn-default pull-right" name="share" type="submit" style="color: #fd7b00" value="Comment">
+                </div>             
               </div>
-            </div>
-          </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-5 col-lg-offset-5">
+                <div class="input-group">
+                  <img src="captcha.php" alt="CAPTCHA" class="captcha-image center-block">    
+                  <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Enter your code here">
+                </div>         
+                </div>
+              </div>
+
+           </div>
+          </div>  
+          </form>       
+
           
           <!-- Display Comments -->
           <div class="panel-body">

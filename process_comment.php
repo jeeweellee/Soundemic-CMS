@@ -28,25 +28,28 @@
 
     function share() {
 
-        $userId = $_SESSION['userId'];
-        $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $songId = filter_input(INPUT_GET, 'songId', FILTER_SANITIZE_NUMBER_INT);
+        if (isset($_POST['captcha']) && $_SESSION['captchaText'] == $_POST['captcha']) {
 
-        if ($_POST && isset($_SESSION['userId']) && isset($_GET['songId']) && !empty($_POST['comment'])) {
+            $userId = $_SESSION['userId'];
+            $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $songId = filter_input(INPUT_GET, 'songId', FILTER_SANITIZE_NUMBER_INT);
 
-            require('connect.php');
+            if ($_POST && isset($_SESSION['userId']) && isset($_GET['songId']) && !empty($_POST['comment'])) {
 
-            $query = "INSERT INTO comments (userId, comment, songId) VALUES (:userId, :comment, :songId)";
-            $statement = $db->prepare($query);
-        
-            $statement->bindValue(":userId", $userId);
-            $statement->bindValue(":comment", $comment);
-            $statement->bindValue(":songId", $songId);
-        
-            $statement->execute();
-            header("Location: user_show.php?songId=" . $_GET['songId']);
-            exit();
-        }
+                require('connect.php');
+
+                $query = "INSERT INTO comments (userId, comment, songId) VALUES (:userId, :comment, :songId)";
+                $statement = $db->prepare($query);
+            
+                $statement->bindValue(":userId", $userId);
+                $statement->bindValue(":comment", $comment);
+                $statement->bindValue(":songId", $songId);
+            
+                $statement->execute();
+                header("Location: user_show.php?songId=" . $_GET['songId']);
+                exit();
+            }
+        }   
     }
 
     function save() {
