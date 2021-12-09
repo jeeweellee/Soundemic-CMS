@@ -23,9 +23,12 @@
     $statement->execute();
     $row = $statement->fetch();   
 
-?>
+    $query2 = "SELECT * FROM comments JOIN users ON comments.userId = users.userId WHERE comments.songId = :songId ORDER BY datetime DESC";
+    $statement2 = $db->prepare($query2);
+    $statement2->bindValue(':songId', $songId, PDO::PARAM_INT);
+    $statement2->execute();
 
- 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,29 +45,66 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.php">
-            <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span><b> SOUNDEMIC</b></a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-
-            </div>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">
+          <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span><b> SOUNDEMIC</b></a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse"></div>
+      </div>
     </nav>
 
+    <!-- Show Song -->
     <div class="jumbotron">
       <div class="container">
         <h1><?= $row['title'] ?></h1>
         <h4><span class="glyphicon glyphicon-play" aria-hidden="true"></span><i> <?= $row['artist'] ?></i></h4>
         <h2 class="show-full-post"><?= $row['description'] ?></h2>
         <p class="date"><small><?= date("F j, Y, g:i a", strtotime($row['currentDate'])) ?></small></p>
+      </div>
+    </div>
+
+    <!-- Comments -->
+    <div class="container">   
+      <div class="row">
+        <div class="panel panel-default widget">
+
+          <div class="panel-heading" style="background: linear-gradient(to bottom, #ffcc00 0%, #ff9933 100%); color: #fff">                   
+              <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Comments</h3>                  
+          </div>
+
+          <!-- Display Comments -->
+          <div class="panel-body">
+            <ul class="list-group">
+              <?php while($row2 = $statement2->fetch()): ?>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-xs-2 col-md-1">
+                      <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+                    </div>
+                    <div class="col-xs-10 col-md-11">
+                      <table id="display">
+                        <tr>
+                          <td><b style="font-size: 20px"><?= $row2['comment'] ?></b></td>
+                        </tr>
+                        <tr>
+                          <td style="color: gray"><i><?= $row2['username'] ?></i> - <?= date("M j, Y, g:i a", strtotime($row2['datetime'])) ?></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              <?php endwhile ?> 
+            </ul>
+          </div>  
+
+        </div>
       </div>
     </div>
 
