@@ -52,10 +52,10 @@
     </nav>
 
     <!-- Home Page Title -->
-    <div class="jumbotron">
+    <div class="jumbotron" style="text-align: center">
       <div class="container">
         <h1>Listening is everything</h1>
-        <p>With Soundemic, you can create your own music and discover millions of tracks. This will allow you to get access to limitless, uninterrupted listening together even while apart. If you’ve got the vibe, REGISTER NOW!</p>
+        <p>With Soundemic, you can create your own music and discover millions of tracks. <br>This will allow you to get access to limitless, uninterrupted listening together even while apart. <br>If you’ve got the vibe, REGISTER NOW!</p>
         <p><a class="btn btn-primary btn-lg main-color-bg" href="register.php" role="button">Register</a> <a class="btn btn-default btn-lg" href="login.php" role="button">Login</a></p>        
       </div>
     </div>
@@ -66,7 +66,7 @@
       <div class="row">
         <?php while ($row = $statement->fetch()): ?>
           <div class="col-md-4">
-          <h2><a href="show.php?songId=<?= $row['songId'] ?>&p=<?= (str_replace(' ', '-', strtolower($row['title']))) ?>" style="color: #342b0f"><?= $row['title'] ?></a></h2>
+          <h2><a href="show.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>&p=<?= (str_replace(' ', '-', strtolower($row['title']))) ?>" style="color: #342b0f"><?= $row['title'] ?></a></h2>
             <p><?= strlen($row['description']) >= 110 ? substr($row['description'], 0, 110) . "..." : $row['description'] ?></p>
           </div>
         <?php endwhile ?>

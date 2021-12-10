@@ -41,11 +41,11 @@
     <!-- Navigation Bar -->
     <?php include("nav.php") ?>
 
-    <!-- Home Page Title -->
-    <div class="jumbotron">
+    <!-- User Home Page Title -->
+    <div class="jumbotron" style="text-align: center">
       <div class="container">
-        <h1>Listening is everything</h1>
-        <p>Welcome to Soundemic, you can create your own music and discover millions of tracks. This will allow you to get access to limitless, uninterrupted listening together even while apart.</p>  
+        <h1>Welcome to Soundemic!</h1>
+        <p>Listening is everything, this is where you can create your own music and discover millions of tracks. <br>This will allow you to get access to limitless, uninterrupted listening together even while apart.</p>  
       </div>
     </div>
 
@@ -54,7 +54,7 @@
       <div class="row">
         <?php while ($row = $statement->fetch()): ?>
           <div class="col-md-4">
-            <h2><a href="user_show.php?songId=<?= $row['songId'] ?>&p=<?= (str_replace(' ', '-', strtolower($row['title']))) ?>" style="color: #342b0f"><?= $row['title'] ?></a></h2>
+            <h2><a href="user_show.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>&p=<?= (str_replace(' ', '-', strtolower($row['title']))) ?>" style="color: #342b0f"><?= $row['title'] ?></a></h2>
             <p><?= strlen($row['description']) >= 110 ? substr($row['description'], 0, 110) . "..." : $row['description'] ?></p>
             <?php if ($loggedInUser == 'admin'): ?>
               <a class="btn btn-default" href="edit_song.php?songId=<?= $row['songId'] ?>&genreId=<?= $row['genreId'] ?>" role="button">Edit</a>

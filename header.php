@@ -21,6 +21,11 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
         case 'genre':
             $component = 'glyphicon glyphicon-cd';
             $title = 'Genre';
+            $caption = 'Manage Your Genre';
+            break;
+        case 'edit_genre':
+            $component = 'glyphicon glyphicon-edit';
+            $title = 'Edit Page';
             $caption = 'About Genre';
             break;
         case 'comments':

@@ -15,15 +15,25 @@
   }
 
   // Displays the songs and comment
-  if (isset($_GET['songId'])) {
+  if (isset($_GET['songId']) && isset($_GET['genreId'])) {
 
     $songId = filter_input(INPUT_GET, 'songId', FILTER_SANITIZE_NUMBER_INT);
+    $genreId = filter_input(INPUT_GET, 'genreId', FILTER_SANITIZE_NUMBER_INT);
 
     $query = "SELECT * FROM songs WHERE songId = :songId";
     $statement = $db->prepare($query);
+
+    $query2 = "SELECT * FROM genre WHERE genreId = :genreId";
+    $statement2 = $db->prepare($query2);
+    
     $statement->bindValue(':songId', $songId, PDO::PARAM_INT);
+    $statement2->bindValue(":genreId", $genreId, PDO::PARAM_INT);
+
     $statement->execute();
+    $statement2->execute(); 	
+
     $row = $statement->fetch();  
+    $row2 = $statement2->fetch();
 
     $query2 = "SELECT * FROM comments JOIN users ON comments.userId = users.userId WHERE comments.songId = :songId ORDER BY datetime DESC";
     $statement2 = $db->prepare($query2);
@@ -33,6 +43,7 @@
   }
   else {
     $songId = false;
+    $genreId = false;
   }
 	
 ?>
@@ -56,7 +67,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1><?= $row['title']?></h1>
-        <h4><span class="glyphicon glyphicon-play" aria-hidden="true"></span><i> <?= $row['artist'] ?></i></h4>
+        <h4><span class="glyphicon glyphicon-play" aria-hidden="true"></span><i> <?= $row['artist'] ?>&nbsp;&nbsp;<span class="glyphicon glyphicon-volume-up"></span> <i><?= $row2['genre'] ?></i></h4>
         <h2 class="show-full-post"><?= $row['description']?></h2>
         <p class="date"><small><?= date("F j, Y, g:i a", strtotime($row['currentDate'])) ?> </small>
         <a href="edit.php?songId=<?= $_GET['songId']?>"></a></p>
@@ -73,7 +84,7 @@
           </div>
 
           <!-- Leave a Comment -->
-          <form action="process_comment.php?songId=<?= $_GET['songId'] ?>" method="post">
+          <form action="process_comment.php?songId=<?= $_GET['songId'] ?>&genreId=<?= $_GET['genreId'] ?>" method="post">
             <div class="panel">
               <div class="panel-body">
                 <div class="row">
@@ -116,10 +127,10 @@
                         </tr>
                       </table>
                       <div class="action">
-                        <form action="process_comment.php?songId=<?= $_GET['songId'] ?>" method="post"> 
+                        <form action="process_comment.php?songId=<?= $_GET['songId'] ?>&genreId=<?= $_GET['genreId'] ?>" method="post"> 
                           <input type="hidden" name="commentId" value="<?= $row2['commentId'] ?>" />
                           <?php if ($loggedInUser == $row2['username']): ?>
-                            <a class="btn btn-warning btn-xs" href="edit_comment.php?songId=<?= $row2['songId'] ?>&commentId=<?= $row2['commentId'] ?>">Edit</a>
+                            <a class="btn btn-warning btn-xs" href="edit_comment.php?songId=<?= $row2['songId'] ?>&genreId=<?= $_GET['genreId'] ?>&commentId=<?= $row2['commentId'] ?>">Edit</a>
                           <?php endif ?>
                           <?php if ($loggedInUser == 'admin'): ?>
                             <input type="submit" name="delete" class="btn btn-danger btn-xs" value="Delete" onclick="return confirm('Are you sure you wish to delete this comment?')" />

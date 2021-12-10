@@ -11,17 +11,25 @@
     
     // Sanitize user input and filter out dangerous character.
     $songId = filter_input(INPUT_GET, 'songId', FILTER_SANITIZE_NUMBER_INT);
+    $genreId = filter_input(INPUT_GET, 'genreId', FILTER_SANITIZE_NUMBER_INT);
 
     // Build the parameterized SQL query.
     $query = "SELECT * FROM songs WHERE songId = :songId";
     $statement = $db->prepare($query);
+
+    $query2 = "SELECT * FROM genre WHERE genreId = :genreId";
+    $statement2 = $db->prepare($query2);
     
     // Bind values to the parameters.
     $statement->bindValue(':songId', $songId, PDO::PARAM_INT);
+    $statement2->bindValue(":genreId", $genreId, PDO::PARAM_INT);
 
     // Execute and fetch the return data.
     $statement->execute();
-    $row = $statement->fetch();   
+    $statement2->execute(); 	
+
+    $row = $statement->fetch(); 
+    $row2 = $statement2->fetch();  
 
     $query2 = "SELECT * FROM comments JOIN users ON comments.userId = users.userId WHERE comments.songId = :songId ORDER BY datetime DESC";
     $statement2 = $db->prepare($query2);
@@ -63,7 +71,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1><?= $row['title'] ?></h1>
-        <h4><span class="glyphicon glyphicon-play" aria-hidden="true"></span><i> <?= $row['artist'] ?></i></h4>
+        <h4><span class="glyphicon glyphicon-play" aria-hidden="true"></span><i> <?= $row['artist'] ?>&nbsp;&nbsp;<span class="glyphicon glyphicon-volume-up"></span> <i><?= $row2['genre'] ?></i></i></h4>
         <h2 class="show-full-post"><?= $row['description'] ?></h2>
         <p class="date"><small><?= date("F j, Y, g:i a", strtotime($row['currentDate'])) ?></small></p>
       </div>
