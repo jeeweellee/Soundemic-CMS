@@ -1,11 +1,12 @@
 <?php
 
     /* Jewel Faith Feliciano
-       Project - Soundemic CMS Application (process_song.php)
-       Where authenticated users and admin can create, update and delete songs.
+       Project - Soundemic CMS Application (process_comment.php)
+       Where authenticated users and admin can create, update and delete comments.
        November 15, 2021
     */
 
+    // Connect to the database.
     require('connect.php');
         
     if(session_status() !== PHP_SESSION_ACTIVE) { 
@@ -33,6 +34,7 @@
             $userId = $_SESSION['userId'];
             $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $songId = filter_input(INPUT_GET, 'songId', FILTER_SANITIZE_NUMBER_INT);
+            $genreId = filter_input(INPUT_GET, 'genreId', FILTER_SANITIZE_NUMBER_INT);
 
             if ($_POST && isset($_SESSION['userId']) && isset($_GET['songId']) && !empty($_POST['comment'])) {
 
@@ -46,7 +48,7 @@
                 $statement->bindValue(":songId", $songId);
             
                 $statement->execute();
-                header("Location: user_show.php?songId=" . $_GET['songId']);
+                header("Location: user_show.php?songId=" . $_GET['songId'] . "&genreId=" . $_GET['genreId']);
                 exit();
             }
         }   
@@ -68,7 +70,7 @@
             $statement->bindValue(':commentId', $commentId, PDO::PARAM_INT);
             $statement->execute();
       
-            header("Location: user_show.php?songId=" . $_GET['songId']);
+            header("Location: user_show.php?songId=" . $_GET['songId'] . "&genreId=" . $_GET['genreId']);
             exit();
         }
         else if (isset($_GET['commentId'])) {
@@ -99,7 +101,7 @@
             $statement->bindValue('commentId', $commentId, PDO::PARAM_INT);
             $statement->execute();
         
-            header("Location: user_show.php?songId=" . $_GET['songId']);
+            header("Location: user_show.php?songId=" . $_GET['songId'] . "&genreId=" . $_GET['genreId']);
             exit();
           }
     }

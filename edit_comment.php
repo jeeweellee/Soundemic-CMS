@@ -54,7 +54,7 @@
     <!-- Navigation Bar -->
     <?php include("nav.php") ?>
 
-    <form action="process_comment.php?songId=<?= $_GET['songId'] ?>&commentId=<?= $_GET['commentId'] ?>" method="post"> 
+    <form action="process_comment.php?songId=<?= $_GET['songId'] ?>&genreId=<?= $_GET['genreId'] ?>&commentId=<?= $_GET['commentId'] ?>" method="post"> 
       <div class="jumbotron" style="text-align: center">
         <div class="container">
           <h1><?= $row['comment']?></h1>
