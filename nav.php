@@ -12,8 +12,9 @@
       session_start();
     }
 
-    if (isset($_SESSION['loggedIn_user'])) {
+    if (isset($_SESSION['loggedIn_user']) && isset($_SESSION['userId'])) {
       $loggedInUser = $_SESSION['loggedIn_user'];
+      $userId = $_SESSION['userId'];
     }
 
     $genreNav = "SELECT * FROM genre ORDER BY genreId";
@@ -62,6 +63,7 @@
           <!-- Welcome Logout -->
           <?php if ($loggedInUser): ?>
           <ul class="nav navbar-nav navbar-right">
+            <li class="<?= ($thisPage == 'edit_profile') ? 'active' : '' ?>"><a href="edit_profile.php?userId=<?= $userId ?>">Edit profile</a></li>
             <li class="active"><a href="#">Welcome, <?= $loggedInUser ?></a></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>

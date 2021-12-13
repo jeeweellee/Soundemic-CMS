@@ -33,6 +33,11 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             $title = 'Comments';
             $caption = 'Manage Your Comments';
             break;
+        case 'edit_profile':
+            $component = 'glyphicon glyphicon-user';
+            $title = 'Edit';
+            $caption = 'Your Profile';
+            break;
     }
     
 ?>
