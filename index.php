@@ -48,6 +48,15 @@
                 <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span><b> SOUNDEMIC</b>
               </a> 
             </div>
+
+            <!-- Welcome -->
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">Welcome, Guest</a></li>
+                <li><a href="login.php">Login</a></li>
+              </ul>
+            </div>  
+
         </div>
     </nav>
 

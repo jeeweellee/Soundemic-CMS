@@ -83,11 +83,11 @@
                 <form action="process_users.php" method="post">
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="username" id="username" class="form-control" value="<?= $row['username']?>" />
+                        <input type="text" name="username" id="username" class="form-control" value="<?= $row['username']?>" readonly />
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="<?= $row['email'] ?>" />
+                        <input type="email" name="email" id="email" class="form-control" value="<?= $row['email'] ?>" readonly />
                     </div> 
                     <div class="form-group">
                         <label>User Type</label>

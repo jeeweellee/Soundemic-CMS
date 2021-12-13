@@ -22,7 +22,7 @@
     function update() {
 
         // UPDATE blog if title, description and if are present in POST.
-        if ($_POST && strlen($_POST['username']) && strlen($_POST['email']) && strlen($_POST['userType']) && strlen($_POST['userId'])) {
+        if ($_POST && strlen($_POST['userType']) && strlen($_POST['userId'])) {
                 
             // Sanitize user input to escape HTML entities and filter out dangerous characters.
             $username  = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

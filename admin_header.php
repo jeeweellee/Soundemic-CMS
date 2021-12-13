@@ -14,16 +14,6 @@
             $title = 'Admin';
             $caption = 'Manage Your Site';
             break;
-        case 'songs':
-            $component = 'glyphicon glyphicon-music';
-            $title = 'Songs';
-            $caption = 'Manage Your Songs';
-            break;
-        case 'genre':
-            $component = 'glyphicon glyphicon-cd';
-            $title = 'Genre';
-            $caption = 'Manage Your Genre';
-            break;
         case 'users':
             $component = 'glyphicon glyphicon-user';
             $title = 'Users';

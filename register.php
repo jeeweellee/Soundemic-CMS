@@ -39,9 +39,11 @@
         else {
           $statement = $db->prepare($registeredUsers);
           $statement->execute();
+          $row = $statement->fetch();
 
           // Stores session user and redirects after REGISTRATION.
           $_SESSION['loggedIn_user'] = $registerUser;
+          $_SESSION['userId'] = $row['userId'];
           header("Location: user_index.php");
         }
       }
