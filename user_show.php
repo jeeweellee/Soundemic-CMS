@@ -98,10 +98,10 @@
                 <br>
                 <div class="row">
                   <div class="col-lg-5 col-lg-offset-5">
-                  <div class="input-group">
-                    <img src="captcha.php" alt="CAPTCHA" class="captcha-image center-block">    
-                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Enter your code here">
-                  </div>         
+                    <div class="input-group">
+                      <img src="captcha.php" alt="CAPTCHA" class="captcha-image center-block">    
+                      <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Enter your code here">
+                    </div>         
                   </div>
                 </div>
               </div>
@@ -115,7 +115,7 @@
                 <li class="list-group-item">
                   <div class="row">
                     <div class="col-xs-2 col-md-1">
-                      <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+                      <img src="<?="uploads/" . $row2['image'] ?>" class="img-circle img-responsive" alt="" />
                     </div>
                     <div class="col-xs-10 col-md-11">
                       <table id="display">
